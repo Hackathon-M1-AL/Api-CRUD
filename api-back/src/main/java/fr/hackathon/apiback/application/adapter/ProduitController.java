@@ -47,6 +47,12 @@ public class ProduitController {
 
     @DeleteMapping("/supprimer-produit")
     public ResponseEntity deleteProduit(@RequestParam final Long id) {
-        return new ResponseEntity(HttpStatus.OK);
+        try {
+            this.produitService.deleteProduit(id);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+
     }
 }
