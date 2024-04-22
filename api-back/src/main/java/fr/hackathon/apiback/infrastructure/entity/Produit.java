@@ -1,0 +1,22 @@
+package fr.hackathon.apiback.infrastructure.entity;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+
+@Data
+@Entity
+public class Produit {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "nom")
+    private String nom;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "quantite")
+    private int quantite;
+    @Column(name = "prix")
+    private Double Prix;
+}
