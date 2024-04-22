@@ -18,14 +18,22 @@ public class ProduitService implements IProduitService {
     public List<Produit> recupererProduits() {
         return this.iProduitDao.getAll();
     }
-
     @Override
     public Produit getOneProduitById(final Long id) {
         return this.iProduitDao.getOneProduitById(id);
     }
-
     @Override
     public Produit add(Produit produit) {
         return this.iProduitDao.add(produit);
     }
+    @Override
+    public Produit updateProduit(Produit produit) {
+        return this.iProduitDao.updateProduit(produit);
+    }
+
+    @Override
+    public void deleteProduit(Long id) {
+        this.iProduitDao.deleteProduit(id);
+    }
+
 }

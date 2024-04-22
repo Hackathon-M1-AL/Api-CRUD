@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -37,5 +39,25 @@ public class ProduitDao implements IProduitDao {
     @Override
     public Produit add(final Produit produit) {
         return this.produitRepository.save(produit);
+    }
+
+    @Override
+    public Produit updateProduit(Produit produit) {
+        Optional<Produit> produitToUpdate = this.produitRepository.findById(produit.getId());
+        if(produitToUpdate.isEmpty()) {
+            throw new NoSuchElementException("Produit non trouvé: " + produit.getId());
+        }
+
+        return this.produitRepository.save(produit);
+    }
+
+    @Override
+    public void deleteProduit(Long id) {
+        Optional<Produit> produitToDelete = this.produitRepository.findById(id);
+        if(produitToDelete.isEmpty()) {
+            throw new NoSuchElementException("Produit non trouvé: " + id);
+        }
+
+        this.produitRepository.deleteById(id);
     }
 }
