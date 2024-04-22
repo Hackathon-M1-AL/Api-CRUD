@@ -20,7 +20,7 @@ public class ProduitController {
         return produitService.recupererProduits();
     }
 
-    @GetMapping("")
+    @GetMapping("/produit")
     public ResponseEntity getOneById(@RequestParam final Long id) {
         return new ResponseEntity(this.produitService.getOneProduitById(id), HttpStatus.OK);
     }
