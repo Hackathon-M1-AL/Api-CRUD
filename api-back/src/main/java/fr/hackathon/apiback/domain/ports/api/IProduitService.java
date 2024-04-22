@@ -7,4 +7,6 @@ import java.util.List;
 public interface IProduitService {
     public List<Produit> recupererProduits();
     public Produit getOneProduitById(Long id);
+
+    public Produit add(final Produit produit);
 }

@@ -1,7 +1,6 @@
 package fr.hackathon.apiback.domain.ports.api;
 
 import fr.hackathon.apiback.domain.ports.spi.IProduitDao;
-import fr.hackathon.apiback.infrastructure.entity.Catalogue;
 import fr.hackathon.apiback.infrastructure.entity.Produit;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +22,10 @@ public class ProduitService implements IProduitService {
     @Override
     public Produit getOneProduitById(final Long id) {
         return this.iProduitDao.getOneProduitById(id);
+    }
+
+    @Override
+    public Produit add(Produit produit) {
+        return this.iProduitDao.add(produit);
     }
 }
