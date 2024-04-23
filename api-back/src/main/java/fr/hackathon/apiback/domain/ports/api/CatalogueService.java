@@ -1,10 +1,12 @@
 package fr.hackathon.apiback.domain.ports.api;
 
-import fr.hackathon.apiback.infrastructure.entity.Catalogue;
+import fr.hackathon.apiback.domain.ports.Catalogue;
 import fr.hackathon.apiback.domain.ports.spi.ICatalogueDao;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+
 @Service
 public class CatalogueService implements ICatalogueService{
 
@@ -27,5 +29,22 @@ public class CatalogueService implements ICatalogueService{
     @Override
     public Catalogue getCatalogueByid(final Long id) {
         return catalogueDao.getCatalogueByid(id);
+    }
+
+    @Override
+    public void deleteCatalogue(Long id) {
+        catalogueDao.deleteCatalogue(id);
+    }
+
+    @Override
+    public Catalogue updateCatalogue(Catalogue catalogue) {
+        final Catalogue foundCatalogue = getCatalogueByid(catalogue.getId());
+
+        if (foundCatalogue == null){
+            throw new NoSuchElementException("Catalogque not found with ID: " + catalogue.getId());
+        }
+
+        return catalogueDao.updateCatalogue(catalogue);
+
     }
 }
