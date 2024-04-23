@@ -1,38 +1,76 @@
 package fr.hackathon.apiback.application.adapter;
 
-import fr.hackathon.apiback.infrastructure.entity.Catalogue;
+import fr.hackathon.apiback.application.dto.InCatalogueDto;
+import fr.hackathon.apiback.application.dto.OutCatalogueDto;
+import fr.hackathon.apiback.application.mapperCatalogue.DtoToDomainMapper;
+import fr.hackathon.apiback.domain.ports.Catalogue;
 import fr.hackathon.apiback.domain.ports.api.CatalogueService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController("/api/catalogue")
 public class CatalogueController {
 
+    private final DtoToDomainMapper mapper;
     private final CatalogueService service;
-
-    public CatalogueController(CatalogueService service) {
+    public CatalogueController(DtoToDomainMapper mapper, CatalogueService service) {
+        this.mapper = mapper;
         this.service = service;
     }
 
-    @PostMapping("/add")
-    public ResponseEntity addCatalogue(@RequestBody final Catalogue catalogue){
-        final Catalogue AddedCatalogue = this.service.add(catalogue);
-        if (AddedCatalogue == null) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    @PostMapping("/nouveau-catalogue")
+    public ResponseEntity<OutCatalogueDto> addCatalogue(@RequestBody final InCatalogueDto inCatalogueDto){
+
+        final Catalogue addedCatalogue = this.service.add(this.mapper.inCatalogueDtoToCatalogue(inCatalogueDto));
+
+        if (addedCatalogue == null) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity<>(this.mapper.catalogueToOutCatalogeDto(addedCatalogue),HttpStatus.CREATED);
 
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity getAll(){
-        return new ResponseEntity(this.service.getAll(), HttpStatus.OK);
+    @GetMapping("/get-all-catalogues")
+    public ResponseEntity<List<OutCatalogueDto>> getAll(){
+
+        List<Catalogue> catalogueEntities = this.service.getAll();
+        final List<OutCatalogueDto> dtoList = catalogueEntities.stream()
+                .map(mapper::catalogueToOutCatalogeDto)
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
 
-    @GetMapping("/getById")
-    public ResponseEntity getById(@RequestParam final Long id){
-        return new ResponseEntity(this.service.getCatalogueByid(id), HttpStatus.OK);
+    @GetMapping("/get-catalogue-by-id")
+    public ResponseEntity<OutCatalogueDto> getById(@RequestParam final Long id){
+        final OutCatalogueDto outCatalogueDto = this.mapper.catalogueToOutCatalogeDto(this.service.getCatalogueByid(id));
+        return new ResponseEntity<>(outCatalogueDto, HttpStatus.OK);
+    }
+
+    @PutMapping("/modifie-catalogue")
+    public ResponseEntity updateCatalogue(@RequestBody final InCatalogueDto inCatalogueDto){
+        final Catalogue domain = this.mapper.inCatalogueDtoToCatalogue(inCatalogueDto);
+
+        try {
+            final Catalogue updatedCatalogue = this.service.updateCatalogue(domain);
+            return new ResponseEntity<>(this.mapper.catalogueToOutCatalogeDto(updatedCatalogue), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/supprimer-catalogue")
+    public ResponseEntity deleteCatalogue(@RequestParam final Long id){
+        try {
+            this.service.deleteCatalogue(id);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (final Exception e){
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 }

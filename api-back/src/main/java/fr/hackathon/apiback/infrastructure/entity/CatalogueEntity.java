@@ -1,14 +1,23 @@
-package fr.hackathon.apiback.application.dto;
+package fr.hackathon.apiback.infrastructure.entity;
 
-import fr.hackathon.apiback.infrastructure.entity.ProduitEntity;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OutCatalogueDto {
+@Data
+@Entity
+public class CatalogueEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "nom")
     private String nom;
+
+    @ManyToMany
     private List<Produit> produits = new ArrayList<>();
 
     public Long getId() {

@@ -1,6 +1,6 @@
 package fr.hackathon.apiback.domain.ports.spi;
 
-import fr.hackathon.apiback.infrastructure.entity.Catalogue;
+import fr.hackathon.apiback.domain.ports.Catalogue;
 
 import java.util.List;
 
@@ -26,4 +26,17 @@ public interface ICatalogueDao {
      * @return
      */
     Catalogue getCatalogueByid(final Long id);
+
+    /**
+     * Supprime le catalogue
+     * @param id
+     */
+    void deleteCatalogue(final Long id);
+
+    /**
+     * Modifie le catalogue
+     * @param catalogue
+     * @return Catalogue
+     */
+    Catalogue updateCatalogue(final Catalogue catalogue);
 }

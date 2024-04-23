@@ -1,12 +1,16 @@
-package fr.hackathon.apiback.application.dto;
+package fr.hackathon.apiback.domain.ports;
 
-import fr.hackathon.apiback.infrastructure.entity.ProduitEntity;
+import fr.hackathon.apiback.infrastructure.entity.Produit;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OutCatalogueDto {
+
+public class Catalogue {
+
     private Long id;
     private String nom;
     private List<Produit> produits = new ArrayList<>();
