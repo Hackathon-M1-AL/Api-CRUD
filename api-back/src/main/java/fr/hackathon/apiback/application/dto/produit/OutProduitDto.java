@@ -1,4 +1,4 @@
-package fr.hackathon.apiback.application.dto;
+package fr.hackathon.apiback.application.dto.produit;
 
 import fr.hackathon.apiback.infrastructure.entity.Catalogue;
 
