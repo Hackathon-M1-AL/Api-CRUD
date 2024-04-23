@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController("/api/catalogue")
+@RestController
+@RequestMapping("/api/catalogue")
 public class CatalogueController {
 
     private final CatalogueDtoToDomainMapper mapper;

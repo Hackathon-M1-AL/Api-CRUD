@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@RestController("/api/produits")
+@RestController
+@RequestMapping(("/api/produits"))
 public class ProduitController {
     private final ProduitDtoToDomainMapper mapper;
     private final ProduitService produitService;
@@ -20,7 +21,7 @@ public class ProduitController {
         this.mapper = mapper;
         this.produitService = produitService;
     }
-    @GetMapping("get-all-produits")
+    @GetMapping("/get-all-produits")
     public ResponseEntity<List<OutProduitDto>> recupererProduits() {
         List<Produit> produits = this.produitService.recupererProduits();
         return new ResponseEntity<>(
