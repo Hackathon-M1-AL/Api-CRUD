@@ -186,4 +186,4 @@ Supprime un produit de la base de données.
 
 ## Diagramme des classes
 
-![Diagramme des classes](https://github.com/Hackathon-M1-AL/Api-CRUD/tree/main/api-back)
+![Diagramme des classes](https://github.com/Hackathon-M1-AL/Api-CRUD/blob/main/class_diagram.jpg)
