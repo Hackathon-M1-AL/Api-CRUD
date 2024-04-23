@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController("/api/produits")
 public class ProduitController {
@@ -21,12 +22,19 @@ public class ProduitController {
     }
     @GetMapping("")
     public ResponseEntity<List<OutProduitDto>> recupererProduits() {
-        return new ResponseEntity<>(this.mapper.domainListToOutDtoList(produitService.recupererProduits()), HttpStatus.OK);
+        List<Produit> produits = this.produitService.recupererProduits();
+        return new ResponseEntity<>(
+                produits.stream()
+                        .map(mapper::domainToOutDto)
+                        .collect(Collectors.toList()
+                        ),
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/produit")
     public ResponseEntity getOneById(@RequestParam final Long id) {
-        return new ResponseEntity(this.produitService.getOneProduitById(id), HttpStatus.OK);
+        return new ResponseEntity(this.mapper.domainToOutDto(this.produitService.getOneProduitById(id)), HttpStatus.OK);
     }
 
     @PostMapping("/nouveau-produit")
