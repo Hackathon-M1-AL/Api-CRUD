@@ -61,7 +61,7 @@ public class ProduitDao implements IProduitDao {
             throw new NoSuchElementException("Produit non trouvé: " + produit.getId());
         }
 
-        final ProduitEntity savedEntity = this.produitRepository.save(entityToupdate.get());
+        final ProduitEntity savedEntity = this.produitRepository.save(this.domainToEntityMapper.domainToEntity(produit));
 
         return this.domainToEntityMapper.entityToDomain(savedEntity);
     }

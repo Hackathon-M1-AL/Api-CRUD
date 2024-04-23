@@ -52,14 +52,4 @@ public class Produit {
     public void setPrix(Double prix) {
         this.prix = prix;
     }
-
-    public List<Catalogue> getCatalogues() {
-        return catalogues;
-    }
-
-    public void setCatalogues(List<Catalogue> catalogues) {
-        this.catalogues = catalogues;
-    }
-
-    private List<Catalogue> catalogues = new ArrayList<>();
 }
