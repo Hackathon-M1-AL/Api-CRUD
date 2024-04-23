@@ -17,7 +17,8 @@ public class PermissionsFilter implements Filter {
 
     private String[] adminMethodAllowed ={
             "nouveau-catalogue", "get-all-catalogues", "get-catalogue-by-id", "modifie-catalogue", "supprimer-catalogue",
-            "nouveau-produit", "get-all-produits", "get-produit-by-id", "modifie-produit", "supprimer-produit"
+            "nouveau-produit", "get-all-produits", "get-produit-by-id", "modifie-produit", "supprimer-produit",
+            "nouveau-utilisateur", "get-utilisateur-by-id", "modifie-utilisateur", "modifie-utilisateur"
     };
 
     private String[] userMethodAllowed = {
@@ -26,7 +27,8 @@ public class PermissionsFilter implements Filter {
 
     private String[] modMethodAllowed = {
             "nouveau-catalogue", "get-all-catalogues", "get-catalogue-by-id", "modifie-catalogue",
-            "nouveau-produit", "get-all-produits", "get-produit-by-id", "modifie-produit"
+            "nouveau-produit", "get-all-produits", "get-produit-by-id", "modifie-produit",
+            "nouveau-utilisateur", "get-utilisateur-by-id", "modifie-utilisateur", "modifie-utilisateur"
     };
 
     private Map<String, String[]> whiteListMap= new HashMap<>();
