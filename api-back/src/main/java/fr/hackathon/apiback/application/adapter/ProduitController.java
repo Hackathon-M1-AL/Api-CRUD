@@ -20,7 +20,7 @@ public class ProduitController {
         this.mapper = mapper;
         this.produitService = produitService;
     }
-    @GetMapping("getAll")
+    @GetMapping("get-all-produits")
     public ResponseEntity<List<OutProduitDto>> recupererProduits() {
         List<Produit> produits = this.produitService.recupererProduits();
         return new ResponseEntity<>(
@@ -32,7 +32,7 @@ public class ProduitController {
         );
     }
 
-    @GetMapping("/getById")
+    @GetMapping("/get-produit-by-id")
     public ResponseEntity getOneById(@RequestParam final Long id) {
         return new ResponseEntity(this.mapper.domainToOutDto(this.produitService.getOneProduitById(id)), HttpStatus.OK);
     }
