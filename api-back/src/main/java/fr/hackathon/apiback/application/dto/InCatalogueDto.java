@@ -1,7 +1,6 @@
 package fr.hackathon.apiback.application.dto;
 
-import fr.hackathon.apiback.infrastructure.entity.Produit;
-import lombok.Data;
+import fr.hackathon.apiback.domain.ports.Produit;
 
 import java.util.ArrayList;
 import java.util.List;

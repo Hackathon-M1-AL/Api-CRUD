@@ -1,5 +1,6 @@
 package fr.hackathon.apiback.infrastructure.entity;
 
+import fr.hackathon.apiback.domain.ports.Produit;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,7 +19,7 @@ public class CatalogueEntity {
     private String nom;
 
     @ManyToMany
-    private List<Produit> produits = new ArrayList<>();
+    private List<ProduitEntity> produits = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -36,11 +37,11 @@ public class CatalogueEntity {
         this.nom = nom;
     }
 
-    public List<Produit> getProduits() {
+    public List<ProduitEntity> getProduits() {
         return produits;
     }
 
-    public void setProduits(List<Produit> produits) {
+    public void setProduits(List<ProduitEntity> produits) {
         this.produits = produits;
     }
 }

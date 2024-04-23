@@ -1,10 +1,5 @@
 package fr.hackathon.apiback.domain.ports;
 
-import fr.hackathon.apiback.infrastructure.entity.Produit;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 
