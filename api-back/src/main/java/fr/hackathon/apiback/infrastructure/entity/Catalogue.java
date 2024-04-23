@@ -18,5 +18,5 @@ public class Catalogue {
     private String nom;
 
     @ManyToMany
-    private List<Produit> produits = new ArrayList<>();
+    private List<ProduitEntity> produits = new ArrayList<>();
 }

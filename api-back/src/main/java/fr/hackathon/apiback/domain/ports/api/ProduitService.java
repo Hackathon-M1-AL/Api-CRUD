@@ -1,7 +1,7 @@
 package fr.hackathon.apiback.domain.ports.api;
 
+import fr.hackathon.apiback.domain.ports.Produit;
 import fr.hackathon.apiback.domain.ports.spi.IProduitDao;
-import fr.hackathon.apiback.infrastructure.entity.Produit;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

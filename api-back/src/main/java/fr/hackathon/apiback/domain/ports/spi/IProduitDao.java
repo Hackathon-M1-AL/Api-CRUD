@@ -1,6 +1,6 @@
 package fr.hackathon.apiback.domain.ports.spi;
 
-import fr.hackathon.apiback.infrastructure.entity.Produit;
+import fr.hackathon.apiback.domain.ports.Produit;
 
 import java.util.List;
 

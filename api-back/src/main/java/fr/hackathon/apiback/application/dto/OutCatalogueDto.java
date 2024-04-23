@@ -1,6 +1,6 @@
 package fr.hackathon.apiback.application.dto;
 
-import fr.hackathon.apiback.infrastructure.entity.Produit;
+import fr.hackathon.apiback.infrastructure.entity.ProduitEntity;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -10,5 +10,5 @@ import java.util.List;
 public class OutCatalogueDto {
     private Long id;
     private String nom;
-    private List<Produit> produits = new ArrayList<>();
+    private List<ProduitEntity> produits = new ArrayList<>();
 }

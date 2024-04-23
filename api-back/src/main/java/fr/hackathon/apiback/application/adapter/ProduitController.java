@@ -1,23 +1,27 @@
 package fr.hackathon.apiback.application.adapter;
 
+import fr.hackathon.apiback.application.dto.produit.InProduitDto;
+import fr.hackathon.apiback.application.dto.produit.OutProduitDto;
+import fr.hackathon.apiback.application.mapper.DtoToDomainMapper;
+import fr.hackathon.apiback.domain.ports.Produit;
 import fr.hackathon.apiback.domain.ports.api.ProduitService;
-import fr.hackathon.apiback.infrastructure.entity.Produit;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RestController("/api/produits")
 public class ProduitController {
+    private final DtoToDomainMapper mapper;
     private final ProduitService produitService;
-    public ProduitController(ProduitService produitService) {
+    public ProduitController(DtoToDomainMapper mapper, ProduitService produitService) {
+        this.mapper = mapper;
         this.produitService = produitService;
     }
     @GetMapping("")
-    public List<Produit> recupererProduits() {
-        return produitService.recupererProduits();
+    public ResponseEntity<List<OutProduitDto>> recupererProduits() {
+        return new ResponseEntity<>(this.mapper.domainListToOutDtoList(produitService.recupererProduits()), HttpStatus.OK);
     }
 
     @GetMapping("/produit")
@@ -26,8 +30,9 @@ public class ProduitController {
     }
 
     @PostMapping("/nouveau-produit")
-    public ResponseEntity addProduit(@RequestBody final Produit produit) {
-        final Produit nouveauProduit = this.produitService.add(produit);
+    public ResponseEntity addProduit(@RequestBody final InProduitDto body) {
+        final Produit domain = this.mapper.inDtoToDomain(body);
+        final Produit nouveauProduit = this.produitService.add(domain);
         if(nouveauProduit == null) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
