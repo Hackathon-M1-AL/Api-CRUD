@@ -1,5 +1,10 @@
 # Documentation de l'API
 
+## Contexte
+
+Le but de l'API est de répondre aux besoins d'une application de CE.
+Elle doit permettre d'intéragir avec des produits, des catalogues et des utilisateurs.
+
 ## Docker compose
 
 Deux docker-compose sont fournis pour lancer l'application en local.
