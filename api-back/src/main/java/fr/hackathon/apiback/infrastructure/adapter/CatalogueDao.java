@@ -3,7 +3,7 @@ package fr.hackathon.apiback.infrastructure.adapter;
 import fr.hackathon.apiback.domain.ports.Catalogue;
 import fr.hackathon.apiback.domain.ports.spi.ICatalogueDao;
 import fr.hackathon.apiback.infrastructure.entity.CatalogueEntity;
-import fr.hackathon.apiback.infrastructure.mapper.EntityToDomainMapper;
+import fr.hackathon.apiback.infrastructure.mapper.CatalogueDomainToEntityMapper;
 import fr.hackathon.apiback.infrastructure.repository.CatalogueRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 @Service
 public class CatalogueDao implements ICatalogueDao {
 
-    private final EntityToDomainMapper mapper;
+    private final CatalogueDomainToEntityMapper mapper;
     private final CatalogueRepository repository;
 
-    public CatalogueDao(EntityToDomainMapper mapper, CatalogueRepository repository) {
+    public CatalogueDao(CatalogueDomainToEntityMapper mapper, CatalogueRepository repository) {
         this.mapper = mapper;
         this.repository = repository;
     }

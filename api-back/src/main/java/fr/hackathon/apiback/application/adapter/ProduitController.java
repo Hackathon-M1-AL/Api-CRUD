@@ -2,7 +2,7 @@ package fr.hackathon.apiback.application.adapter;
 
 import fr.hackathon.apiback.application.dto.produit.InProduitDto;
 import fr.hackathon.apiback.application.dto.produit.OutProduitDto;
-import fr.hackathon.apiback.application.mapper.DtoToDomainMapper;
+import fr.hackathon.apiback.application.mapper.ProduitDtoToDomainMapper;
 import fr.hackathon.apiback.domain.ports.Produit;
 import fr.hackathon.apiback.domain.ports.api.ProduitService;
 import org.springframework.http.HttpStatus;
@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 
 @RestController("/api/produits")
 public class ProduitController {
-    private final DtoToDomainMapper mapper;
+    private final ProduitDtoToDomainMapper mapper;
     private final ProduitService produitService;
-    public ProduitController(DtoToDomainMapper mapper, ProduitService produitService) {
+    public ProduitController(ProduitDtoToDomainMapper mapper, ProduitService produitService) {
         this.mapper = mapper;
         this.produitService = produitService;
     }

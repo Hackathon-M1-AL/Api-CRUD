@@ -1,7 +1,7 @@
 package fr.hackathon.apiback.infrastructure.adapter;
 
-import fr.hackathon.apiback.infrastructure.mapper.DomainToEntityMapper;
-import fr.hackathon.apiback.application.mapper.DtoToDomainMapper;
+import fr.hackathon.apiback.application.mapper.ProduitDtoToDomainMapper;
+import fr.hackathon.apiback.infrastructure.mapper.ProduitDomainToEntityMapper;
 import fr.hackathon.apiback.domain.ports.Produit;
 import fr.hackathon.apiback.domain.ports.spi.IProduitDao;
 import fr.hackathon.apiback.infrastructure.entity.ProduitEntity;
@@ -18,16 +18,16 @@ import java.util.stream.Collectors;
 @Service
 public class ProduitDao implements IProduitDao {
     private final ProduitRepository produitRepository;
-    private final DtoToDomainMapper dtoToDomainMapper;
-    private final DomainToEntityMapper domainToEntityMapper;
+    private final ProduitDtoToDomainMapper produitDtoToDomainMapper;
+    private final ProduitDomainToEntityMapper domainToEntityMapper;
 
     public ProduitDao(
             ProduitRepository produitRepository,
-            DtoToDomainMapper dtoToDomainMapper,
-            DomainToEntityMapper domainToEntityMapper
+            ProduitDtoToDomainMapper produitDtoToDomainMapper,
+            ProduitDomainToEntityMapper domainToEntityMapper
     ) {
         this.produitRepository = produitRepository;
-        this.dtoToDomainMapper = dtoToDomainMapper;
+        this.produitDtoToDomainMapper = produitDtoToDomainMapper;
         this.domainToEntityMapper = domainToEntityMapper;
     }
 

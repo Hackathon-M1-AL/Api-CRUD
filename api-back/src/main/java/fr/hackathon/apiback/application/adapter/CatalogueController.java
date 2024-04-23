@@ -2,7 +2,7 @@ package fr.hackathon.apiback.application.adapter;
 
 import fr.hackathon.apiback.application.dto.InCatalogueDto;
 import fr.hackathon.apiback.application.dto.OutCatalogueDto;
-import fr.hackathon.apiback.application.mapperCatalogue.DtoToDomainMapper;
+import fr.hackathon.apiback.application.mapper.CatalogueDtoToDomainMapper;
 import fr.hackathon.apiback.domain.ports.Catalogue;
 import fr.hackathon.apiback.domain.ports.api.CatalogueService;
 import org.springframework.http.HttpStatus;
@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 @RestController("/api/catalogue")
 public class CatalogueController {
 
-    private final DtoToDomainMapper mapper;
+    private final CatalogueDtoToDomainMapper mapper;
     private final CatalogueService service;
-    public CatalogueController(DtoToDomainMapper mapper, CatalogueService service) {
+    public CatalogueController(CatalogueDtoToDomainMapper mapper, CatalogueService service) {
         this.mapper = mapper;
         this.service = service;
     }
