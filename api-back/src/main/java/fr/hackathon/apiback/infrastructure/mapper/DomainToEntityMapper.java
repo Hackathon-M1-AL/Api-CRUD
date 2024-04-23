@@ -1,4 +1,4 @@
-package fr.hackathon.apiback.application.mapper;
+package fr.hackathon.apiback.infrastructure.mapper;
 
 import fr.hackathon.apiback.application.dto.produit.InProduitDto;
 import fr.hackathon.apiback.domain.ports.Produit;
