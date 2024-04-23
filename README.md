@@ -40,7 +40,12 @@ __Ajouter__ un nouvel utilisateur :
 Exemple de json :
 ```json
 {
-  
+  "nom": "string",
+  "login": "string",
+  "prenom": "string",
+  "mail": "string",
+  "password": "string",
+  "roles": "string"
 }
 ```
 Ajoute un nouvel utilisateur à la base de données.
@@ -52,7 +57,13 @@ __Modifier__ un utilisateur
 Exemple de json :
 ```json
 {
-  
+  "id": 0,
+  "nom": "string",
+  "login": "string",
+  "prenom": "string",
+  "mail": "string",
+  "password": "string",
+  "roles": "string"
 }
 ```
 Met à jour les informations d'un utilisateur existant
